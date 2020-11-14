@@ -81,8 +81,31 @@ if __name__ == "__main__":
     # TODO: wait for windows to finish launching instead of sleeping
     time.sleep(7)
     rename_wows(process_acc_idx)
-    resize_and_position_wows()
+    # resize_and_position_wows()
 
     time.sleep(5)
+
+    # Minimizing and showing again sets focus (work arround for not being
+    # able to use setForegroundWin)
+
+    SPEED = 0.2
+    while True:
+        gui.ShowWindow(acc_idx_hwnd[2], con.SW_SHOWMINIMIZED)
+        gui.ShowWindow(acc_idx_hwnd[2], con.SW_RESTORE)  # SW_RESTORE
+        # gui.SetForegroundWindow(acc_idx_hwnd[2])
+        time.sleep(SPEED)
+        gui.ShowWindow(acc_idx_hwnd[3], con.SW_SHOWMINIMIZED)
+        gui.ShowWindow(acc_idx_hwnd[3], con.SW_RESTORE)
+        # gui.SetForegroundWindow(acc_idx_hwnd[3])
+        time.sleep(SPEED)
+        gui.ShowWindow(acc_idx_hwnd[7], con.SW_SHOWMINIMIZED)
+        gui.ShowWindow(acc_idx_hwnd[7], con.SW_RESTORE)
+        time.sleep(SPEED)
+        gui.ShowWindow(acc_idx_hwnd[8], con.SW_SHOWMINIMIZED)
+        gui.ShowWindow(acc_idx_hwnd[8], con.SW_RESTORE)
+        time.sleep(SPEED)
+        gui.ShowWindow(acc_idx_hwnd[9], con.SW_SHOWMINIMIZED)
+        gui.ShowWindow(acc_idx_hwnd[9], con.SW_RESTORE)
+        time.sleep(SPEED)
 
     input()

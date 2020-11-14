@@ -1,3 +1,10 @@
+# Features
+- launch any or all wow accounts
+- multiple layouts
+- adapt position based on order (if we launch 1,3,4 no empty space between 3 and 4)
+- close certain windows
+- keybind to click/interact with mouseover in game and python script listen and swap to next window with short delay this means 1 button to take action and cycle to next
+
 # TODO
 - [x] launch and rename wows
   - [x] launch
