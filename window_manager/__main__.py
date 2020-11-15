@@ -18,10 +18,12 @@ swap_callbacks = [lambda: api.swap_to_window(x) for x in list(range(10))]
 
 def swap_next():
     api.swap_to_next_window()
+    # api.test2()
 
 
 def launch():
     api.launch_and_rename_windows()
+    # api.test1()
 
 
 def test1():
@@ -33,9 +35,9 @@ def test2():
 
 
 hotkey_handlers = {
-    "<alt>+q": swap_next,
+    "q": swap_next,
     "<ctrl>+<alt>+<f12>": stop_listener,
-    "<ctrl>+<alt>+<f1>": launch,
+    "<f1>": launch,
 }
 
 

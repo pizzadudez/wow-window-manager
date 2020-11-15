@@ -106,3 +106,9 @@ class WindowManager:
     def swap_to_window(self, acc_idx):
         print(f"Swap to {acc_idx}")
         self._set_foreground_window(acc_idx)
+
+    def test1(self):
+        print(1)
+
+    def test2(self):
+        print(2)
