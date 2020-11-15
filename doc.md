@@ -11,17 +11,13 @@
   - [x] sort out the 2 window problem
   - [x] rename
   - [ ] default positions
-- [ ] keyboarding listening
+- [x] keyboarding listening
 - [ ] position + resize on keybind
-- [ ] keybind to cycle thru wow windows
+- [x] keybind to cycle thru wow windows
 
 
 # Addon
 - Follow and mount command with addon comm
-
-
-pyinput
-
 
 
 # Launch and Rename hidden window issue

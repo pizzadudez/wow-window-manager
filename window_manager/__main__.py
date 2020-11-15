@@ -1,54 +1,19 @@
-from pynput import keyboard
+import keyboard
 
 from .api import WindowManager
 
 api = WindowManager()
 
 
-class StopException(Exception):
-    pass
-
-
-def stop_listener():
-    raise StopException
-
-
-swap_callbacks = [lambda: api.swap_to_window(x) for x in list(range(10))]
-
-
-def swap_next():
-    api.swap_to_next_window()
-    # api.test2()
-
-
-def launch():
-    api.launch_and_rename_windows()
-    # api.test1()
-
-
-def test1():
-    print(1)
-
-
-def test2():
-    print(2)
-
-
-hotkey_handlers = {
-    "q": swap_next,
-    "<ctrl>+<alt>+<f12>": stop_listener,
-    "<f1>": launch,
-}
-
-
 def main():
     print("Listening to Global HotKeys")
-    # Keyboard Listener thread
-    with keyboard.GlobalHotKeys(hotkey_handlers) as listener:
-        try:
-            listener.join()
-        except StopException:
-            print("Closing Listener")
+    keyboard.add_hotkey("ctrl+alt+f1", api.launch_and_rename_windows)
+    keyboard.add_hotkey("enter", api.swap_to_next_window)
+    keyboard.add_hotkey("ctrl+e", api.swap_to_window, args=[0])
+    for idx in list(range(1, 10)):
+        keyboard.add_hotkey(f"ctrl+{idx}", api.swap_to_window, args=[idx])
+
+    keyboard.wait("ctrl+alt+f12")
 
 
 if __name__ == "__main__":
