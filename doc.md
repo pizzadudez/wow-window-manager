@@ -1,3 +1,20 @@
+# TODO:
+- [ ] Add scrollLockOn flag
+- [ ] add mouse for scrollwheel listening
+- [ ] add auto window-switcher and try out different switch timers
+- [ ] externalise keybinds (possibility to add multiple keybinds per action)
+- [ ] set main window
+- [ ] launch only specific accounts
+- [ ] relaunch possibility by getting window handles by their name, don't relaunch windows if present
+- [ ] team-select + select-overlay run/close
+
+# Bugs:
+- closing doesnt release proc ids and handles FIX this!
+- closing already closed windows
+  - pywintypes.error: (5, 'TerminateProcess', 'Access is denied.')
+  - check if proc/window hwnd exists before closing
+- handle cycling when window manually closed using try/except block
+
 # Features
 - launch any or all wow accounts
 - multiple layouts

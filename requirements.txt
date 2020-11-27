@@ -1,2 +1,4 @@
+keyboard==0.13.5
+psycopg2==2.8.6
 pynput==1.7.1
 pywin32==228
