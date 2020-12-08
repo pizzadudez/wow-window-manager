@@ -1,9 +1,12 @@
 import psycopg2
 from .config import DB_HOST, DB_USER, DB_NAME, DB_PASSWORD
 
-db_conn = psycopg2.connect(
-    host=DB_HOST, database=DB_NAME, user=DB_USER, password=DB_PASSWORD
-)
+try:
+    db_conn = psycopg2.connect(
+        host=DB_HOST, database=DB_NAME, user=DB_USER, password=DB_PASSWORD
+    )
+except Exception:
+    print("Database connection error")
 
 
 def get_acc_indices():

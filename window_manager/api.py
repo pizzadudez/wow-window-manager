@@ -22,7 +22,10 @@ OVERLAY_TITLE = "WoWSelectOverlay"
 
 class WindowManager:
     def __init__(self):
-        self.acc_indices = get_acc_indices()
+        try:
+            self.acc_indices = get_acc_indices()
+        except Exception:
+            self.acc_indices = ACCOUNT_INDICES
         self.paths = {
             x: Path(ACCOUNT_FOLDERS_ROOT) / f"wow{x}" / "_retail_" / "WoW.exe"
             for x in self.acc_indices
