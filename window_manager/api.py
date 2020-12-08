@@ -10,15 +10,11 @@ from .config import ACCOUNT_FOLDERS_ROOT
 
 
 ACCOUNT_INDICES = [2, 5, 6, 8, 9]
-# ACCOUNT_INDICES = [0, 1, 2, 3, 4, 5, 7, 9]
-# ACCOUNT_INDICES = [5, 7, 9]
-# ACCOUNT_INDICES = [0, 1, 2, 3, 4]
-# ACCOUNT_INDICES = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 DEFAULT_TITLE = "World of Warcraft"
 TITLE_PREFIX = "wow"
 
-SWAP_DELAY = 0.16
+SWAP_DELAY = 0.09
 
 OVERLAY_PATH = Path(r"D:\_repos\select-overlay\dist\win-unpacked\WowSelectOverlay")
 OVERLAY_TITLE = "WoWSelectOverlay"
@@ -43,6 +39,8 @@ class WindowManager:
 
         # scroll lock on enables certain keys to work only when active
         self.scroll_lock_on = False
+        # set foreground lock ended
+        self.last_swap_end = time.time()
 
         self.overlay = {
             "proc_id": None,
@@ -187,25 +185,7 @@ class WindowManager:
                     gui.ShowWindow(hwnd_next, con.SW_SHOWMINIMIZED)
 
         self.last_foreground_acc_idx = acc_idx
-
-    def _set_foreground_window_new(self, acc_idx):
-        # TODO new idea
-        # Delay
-        time.sleep(SWAP_DELAY)
-        # Minimize current
-        prev_acc_idx = self.last_foreground_acc_idx
-        if prev_acc_idx is not None:
-            hwnd_prev = self.acc_idx_hwnd[prev_acc_idx]
-            gui.ShowWindow(hwnd_prev, con.SW_SHOWMINIMIZED)
-        # Maximize (or min-max next window to get it ready)
-        next_acc_idx = self._get_next_acc_idx(acc_idx)
-        hwnd_next = self.acc_idx_hwnd[next_acc_idx]
-        if not gui.IsIconic(hwnd_next):
-            # print("not min", acc_idx)
-            gui.ShowWindow(hwnd_next, con.SW_SHOWMINIMIZED)
-        gui.ShowWindow(hwnd_next, con.SW_RESTORE)
-
-        self.last_foreground_acc_idx = acc_idx
+        self.last_swap_end = time.time()
 
     def _get_next_acc_idx(self, prev_acc_idx):
         """Get next acc index in list"""
