@@ -1,12 +1,15 @@
 # TODO:
-- [ ] Add scrollLockOn flag
-- [ ] add mouse for scrollwheel listening
+- [x] Add scrollLockOn flag
+- [x] add mouse for scrollwheel listening
+  - [x] added click (ctrl+click) listener instead
 - [ ] add auto window-switcher and try out different switch timers
 - [ ] externalise keybinds (possibility to add multiple keybinds per action)
 - [ ] set main window
-- [ ] launch only specific accounts
+- [x] launch only specific accounts
 - [ ] relaunch possibility by getting window handles by their name, don't relaunch windows if present
 - [ ] team-select + select-overlay run/close
+- [ ] maximize all (keep current win - maximize it last), minimize all (except curent)
+- [ ] add hook.py to detect current window
 
 # Bugs:
 - closing doesnt release proc ids and handles FIX this!
