@@ -1,0 +1,8 @@
+{
+    "ACCOUNT_FOLDERS_ROOT": "C:\\wow_accounts",
+    "PASSWORD": "",
+    "DB_HOST": "localhost",
+    "DB_USER": "",
+    "DB_NAME": "",
+    "DB_PASSWORD": ""
+}
