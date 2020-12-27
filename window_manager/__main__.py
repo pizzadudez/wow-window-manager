@@ -2,7 +2,7 @@ import keyboard
 
 from .api import WindowManager
 from .utils import copy_to_clipboard
-from .mouse_custom import on_click_modified
+from .mouse_custom import on_click_modified, on_wheel
 
 
 api = WindowManager()
@@ -17,11 +17,20 @@ def ctrl_left_click(event):
     api.swap_to_next_window(locked=True, minimize_current=True)
 
 
+def test_on_wheel(event):
+    if event.time < api.last_swap_end + 0.02:
+        return
+    if not api.scroll_lock_on or not keyboard.is_pressed("ctrl"):
+        return
+    api.swap_to_next_window(locked=True, minimize_current=True)
+
+
 def main():
     print("Listening to Global HotKeys")
 
     # @@test mouse click
     on_click_modified(ctrl_left_click)
+    on_wheel(test_on_wheel, direction="UP")
 
     # @@helpers
     keyboard.add_hotkey("scroll lock", api.toggle_scroll_lock)

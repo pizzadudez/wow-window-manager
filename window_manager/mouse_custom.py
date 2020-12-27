@@ -1,4 +1,16 @@
-from mouse import _listener, ButtonEvent, LEFT, RIGHT, MIDDLE, X, X2, UP, DOWN, DOUBLE
+from mouse import (
+    _listener,
+    ButtonEvent,
+    WheelEvent,
+    LEFT,
+    RIGHT,
+    MIDDLE,
+    X,
+    X2,
+    UP,
+    DOWN,
+    DOUBLE,
+)
 
 # def on_button(
 #     callback, args=(), buttons=(LEFT, MIDDLE, RIGHT, X, X2), types=(UP, DOWN, DOUBLE)
@@ -42,6 +54,20 @@ def on_button_modified(
 def on_click_modified(callback, args=()):
     """ Invokes `callback` with `args` when the left button is clicked. """
     return on_button_modified(callback, args, [LEFT], [UP])
+
+
+def on_wheel(callback, args=(), direction=None):
+    if direction is not None:
+        direction = 1 if direction == "UP" else -1
+
+    def handler(event):
+        if isinstance(event, WheelEvent):
+            if direction is not None and direction != event.delta:
+                return
+            callback(event, *args)
+
+    _listener.add_handler(handler)
+    return handler
 
 
 if __name__ == "__main__":
